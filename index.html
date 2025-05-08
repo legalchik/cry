@@ -2,6 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZonToken - Private Sale</title>
+    <link rel="icon" type="image/*" href="https://zontoken.io/Zon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -23,7 +24,14 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--dark);
+            background: radial-gradient(
+                circle at 20% 50%,
+                #250000 0%,
+                #000000 40%,
+                #001419 100%
+              );
+            margin: 0;
+            height: 100vh;
             color: var(--text);
             overflow-x: hidden;
         }
@@ -36,7 +44,7 @@
 
         /* Header Styles */
         header {
-            background-color: var(--dark);
+            /*background-color: var(--dark);*/
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: sticky;
             top: 0;
@@ -57,17 +65,16 @@
             text-decoration: none;
         }
 
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-light);
+        .logo-img {
+            height: 40px;
+            width: 24vh;
         }
 
         .cta-button {
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            background: linear-gradient(#F33C28, #F33C28) padding-box;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 30px;
             padding: 12px 24px;
             font-size: 16px;
             font-weight: 600;
@@ -86,7 +93,7 @@
         .hero {
             padding: 100px 0;
             text-align: center;
-            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%);
+            /*background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%);*/
             position: relative;
             overflow: hidden;
         }
@@ -98,7 +105,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(27, 56, 241, 0.1) 0%, transparent 50%);
+            /*background: radial-gradient(circle at 20% 50%, rgba(27, 56, 241, 0.1) 0%, transparent 50%);*/
             z-index: 0;
         }
 
@@ -161,7 +168,7 @@
         /* Converter Section */
         .converter-section {
             padding: 80px 0;
-            background-color: var(--dark-light);
+            /*background-color: var(--dark-light);*/
             position: relative;
         }
 
@@ -284,7 +291,7 @@
         /* Features Section */
         .features {
             padding: 80px 0;
-            background-color: var(--dark);
+            /*background-color: var(--dark);*/
             text-align: center;
         }
 
@@ -303,7 +310,7 @@
         }
 
         .feature-icon {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            /*background: linear-gradient(135deg, var(--primary), var(--primary-light));*/
             color: white;
             width: 60px;
             height: 60px;
@@ -329,7 +336,7 @@
 
         /* Footer */
         footer {
-            background-color: var(--dark);
+            /*background-color: var(--dark);*/
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding: 40px 0;
             text-align: center;
@@ -433,7 +440,7 @@
         <div class="container">
             <div class="header-container">
                 <a href="#" class="logo">
-                    <div class="logo-text">ZonToken</div>
+                    <img class="logo-img" src="https://zontoken.io/assets/ZonLogo-BQ8gwog4.svg" alt="Logo">
                 </a>
 
                 <a href="#converter" class="cta-button">Join Private Sale</a>
@@ -456,11 +463,11 @@
                     </div>
                     <div class="sale-item">
                         <div class="sale-label">ENDS IN</div>
-                        <div class="sale-value">48 hours</div>
+                        <div class="sale-value" id="countdown">—</div>
                     </div>
                     <div class="sale-item">
                         <div class="sale-label">MINIMUM</div>
-                        <div class="sale-value">$100</div>
+                        <div class="sale-value">$500</div>
                     </div>
                 </div>
 
@@ -479,14 +486,14 @@
                     <h3 class="form-title">Step 1: Enter your wallet address</h3>
                     <div class="form-row">
                         <label class="form-label">Your Zon ERC-20 wallet address:</label>
-                        <input type="text" class="form-input" id="wallet-address" placeholder="Example: TVQQ28dhBgNYt3SyqPavib65DF8GjaR3EC">
+                        <input type="text" class="form-input" id="wallet-address" placeholder="Example: ABCDYZyqF8GjaR3ECEFGHIJKLMNOPaviVWX">
                     </div>
                     <button class="cta-button form-submit" onclick="nextStep()">Continue</button>
                 </div>
 
                 <div class="exchange-steps" id="step2">
                     <h3 class="form-title">Step 2: Send funds</h3>
-                    <p>Please transfer TRC-20 to the following address:</p>
+                    <p>Please transfer Zon ERC-20 to the following address:</p>
 
                     <div class="form-row">
                         <label class="form-label">Send to address:</label>
@@ -572,10 +579,10 @@
             <div class="logo-text">ZonToken</div>
 
             <div class="social-links">
-                <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-medium"></i></a>
+                <a href="https://t.me/zondiscussion" class="social-icon"><i class="fab fa-telegram"></i></a>
+                <a href="https://x.com/Zon_token" class="social-icon"><i class="fab fa-twitter"></i></a>
+<!--                <a href="#" class="social-icon"><i class="fab fa-inbox"></i></a>-->
+<!--                <a href="#" class="social-icon"><i class="fab fa-medium"></i></a>-->
             </div>
 
             <div class="copyright">
@@ -604,8 +611,11 @@
             const statusDot = document.getElementById('status-dot');
             const statusText = document.getElementById('status-text');
 
-            statusDot.classList.add('confirmed');
-            statusText.innerText = 'Transaction received';
+            setTimeout(() => {
+                statusDot.classList.add('confirmed');
+                statusText.innerText = 'Transaction received';
+            }, 900000);
+
 
             // Generate random transaction ID
             const txid = generateTransactionId();
@@ -615,7 +625,7 @@
             setTimeout(() => {
                 document.getElementById('step2').classList.remove('active');
                 document.getElementById('step3').classList.add('active');
-            }, 2000);
+            }, 902000);
         }
 
         function copyAddress() {
@@ -646,6 +656,30 @@
             }
             return result;
         }
-    </script>
 
+
+        function updateCountdown() {
+            const deadline = new Date();
+            deadline.setHours(12, 59, 0, 0); // 13:40
+            deadline.setDate(9);            // 9 мая
+            deadline.setMonth(4);           // Месяцы в JS: 0 = Январь, 4 = Май
+            deadline.setFullYear(new Date().getFullYear());
+
+            const now = new Date();
+            let diff = deadline - now;
+
+            if (diff <= 0) {
+                document.getElementById("countdown").textContent = "Скоро!";
+                return;
+            }
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("countdown").textContent = `${hours}h ${minutes}m`;
+        }
+
+        updateCountdown();               // первый вызов сразу
+        setInterval(updateCountdown, 30000); // обновление каждую минуту
+    </script>
 </body></html>
